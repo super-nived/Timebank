@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/fail.css' %}">
+    <title>Document</title>
+    <style>
+      #mainCard{
+    min-height:100vh;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    
+  }
+  #mainCard a{
+    text-align: center;
+    text-decoration: none;
+    
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+  
+  .font-staatliches {
+    font-family: 'Staatliches', cursive;
+  }
+  h4 {
+    font-family: "sans-sarif";
+    font-weight:bold;
+  }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="row" id="mainCard">
+          <section class="col-md-6 offset-md-3">
+            
+            <div class="card text-center animated zoomIn slow p-5 shadow-lg">
+              
+               <span><i class="far text-warning fa-5x fa-frown"></i></span>
+              
+              <p class="display-3 mt-2 font-staatliches">Oops!</p>
+              
+             
+              
+              <h2 class="text-danger mb-3 font-weight-bold font-staatliches">
+                 Insufficient time to redeem !</h2>
+                
+              <a href="{% url 'home' %}" >Go to HOME Page</a>
+              
+            </div>
+          </section>
+        </div>
+      </main>
+</body>
+</html>

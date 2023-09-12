@@ -1,0 +1,12 @@
+
+{% for i in data %}
+<div id='{{i.id}}' class="message" category={{category}}>
+    <div class="profile-photo">
+        <img src="media/{{i.img}}" alt="">
+    </div>
+    <div class="message-body">
+        <h5>{{i.title}}</h5>
+        
+    </div>
+</div>
+{%endfor %}

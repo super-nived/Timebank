@@ -1,0 +1,54 @@
+{%for i in data %}
+<div class="feed">
+    <div class="head">
+        <div class="user">
+            <div class="profile-photo">
+                <img src="{{i.nation.img.url}}" alt=""> 
+             </div>
+             <div class="ingo">
+                <h3>{{i.name}}</h3>
+                <small>{{i.area}},{{i.created_at}}</small>
+             </div>
+             
+        </div>
+        <span class="edit">
+            <i class="bi bi-three-dots"></i>
+         </span>
+    </div>
+
+<div class="photo skeleton">
+    <a href="/product/{{i.id}}">   <img src="media/{{i.img}}" alt=""> </a>
+</div>
+
+<div class="action-buttons">
+
+    <div class="intraction-button">
+    <button  value="{{i.id}}" class="applay-btn btn-primary">APPLAY</button>
+    </div>
+    <div value = "{{i.id}}" class="bookmark">
+        {% if i.id|add:0|stringformat:"d" in cart %}
+        <span> <i class="bi bi-cart-fill" style="color: red;"></i> </span>
+        {%else%}
+        <span><i class="bi bi-cart-fill"></i> </span>
+        {% endif %}
+        
+
+    </div>
+</div>
+
+
+<div class="cation">
+   
+    <p><b>constuction type</b> : alluminium-fabrication  </p>
+</div>
+
+<div class="cation">
+    <p><b>location : </b>  <span class="span hash-tag">#{{i.area}}</span></p>
+</div>
+<div class="text-muted"><P>description:</P>  {{i.detail}}...
+
+</div>
+
+
+</div>
+{%endfor %}

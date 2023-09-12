@@ -1,0 +1,209 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>time bank</title>
+    <!--style sheet -->
+    	<!-- Font Awesome -->
+
+	<!-- CustomJs -->
+
+	
+    
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+    <!--icon cdn-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+         <a href="{% url 'home' %}"> <h2 >Time Bank</h2></a>
+        </div>
+
+       <div class="create">
+            <div class="profile-photo">
+              {% if user.image %}
+              <a href="{% url 'user' %}"> <img src="{{user.image.url}}" > </a>
+          {% else %}
+          <a href="{% url 'user' %}"> <img src="https://media.istockphoto.com/id/950587720/vector/incognito-5.jpg?s=612x612&w=0&k=20&c=e66fJb2d-Mwp5vrR366dknZN-s7nJRjJhipcy5w9kOs=" alt=""> </a>
+          {% endif %}
+            </div>
+       </div>
+    </div>
+    </nav>
+  
+   <main>
+    <div class="container">
+      
+            <div class="left ">
+                <a href="" class="profile">
+                    <div class="profile-photo">
+                        {% if user.image %}
+                        <img src="{{user.image.url}}" alt=""> 
+                         {% endif %}
+                    </div>
+                    <div class="handler">
+                        <h4>{{user}}</h4>
+                        <p class="text-muted">
+                            @{{user.area}}
+                        </p>
+                    </div>
+                </a>
+    
+                <div class="sidebar">
+                    <a href="{% url 'home' %}" class="menu-item ">
+                        <span><i class="bi bi-house-fill"></i></span><h3>home</h3>
+                    </a>
+
+                    <a href="#" class="menu-item" id="notifications">
+                        
+                        <span ><i class="bi bi-bell-fill"></i></span><h3 id="redeem-btn">redeem</h3>
+                      
+                             
+                           
+                                
+                    </a>
+    
+                    <a href="#" id="open-edit-page" class="menu-item"  >
+                        <span  ><i class="bi bi-sort-up"> </i></span><h3 >edit</h3>
+                    </a>
+    
+    
+     
+                    <a href="{% url 'logout' %}" class="menu-item" id="logout">
+                        <span><i class="bi bi-gear-fill"></i></span><h3>logout</h3>
+                    </a>
+           
+                </div>
+                <label id='timer' class="btn btn-primary"  for="create-post"><p id='hours'>0</p><p id='minutes'>0</p><p id='seconds'>0</p></label>
+            </div>
+    
+            <!--================================end of side bar and side bar====================================-->
+            <!--===========================================middle================================================-->
+            
+            <div class="middle" id="cart-box">
+                
+             <div class="user-left">
+                <div class="image">
+                    {% if user.image %}
+                    <img src="{{user.image.url}}" alt=""> 
+                     {% endif %}
+                </div>
+                <div class="content">
+                 <div class="time">
+                    <h4>total time in account : <span >{{user.time}}</span></h4>
+                    <h4>total curruncy redeemed :<span> {{user.currency}}</span></h4>
+                 </div>
+
+        
+                </div>
+             </div>
+
+            
+             <div class="user-right">
+                <div class="user-detial">
+                    <h2 class="product-title">{{user}}</h2>
+                    <hr class='line'>
+                    <!-- <a href="#" class="product-link">visit location</a>
+                    <div class="product-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                      <span></span>
+                    </div>
+                    <hr class='line'> -->
+                    <div class="product-price">
+                      <p class="new-price"> current  age : <span>{{user.age}}</span></p>
+                      <p class="new-price">mobile number: <span>{{user.phone_number}}</span></p>
+                    </div>
+                    <hr class='line'>
+                    <div class="product-detail">
+                      <h4>contact-adress </h4>
+                      <ul>
+                        <li><i class="bi bi-geo-alt-fill"></i><span>{{user.area}}</span></li>
+                        <li><i class="bi bi-geo-alt-fill"></i><span>{{user.district}}</span></li>
+                        <li><i class="bi bi-geo-alt-fill"></i><span>{{user.state}}</span></li>
+                        <li><i class="bi bi-geo-alt-fill"></i><span>{{user.nation}}</span></li>
+                        <li><i class="bi bi-geo-alt-fill"></i><span>{{user.area}}</span></li>
+
+            
+                      </ul>
+                    </div>
+                    <hr class='line'>
+                    <!-- <div class="purchase-info">
+                      <input type="number" min="0" value="1">
+                      <button type="button" class="btn">
+                        Add to Cart <i class="fas fa-shopping-cart"></i>
+                      </button>
+                      <a href="tel:{{data.phone}}">
+                        <button type="button" class="btn">Call Now</button></a>
+                    </div> -->
+            
+                    {% if rating <= 0 %}
+                    <h4 style="text-align: center;">you are  not rated by anyone  </h4>
+                    {% else %}
+                    <h4 style="text-align: center;">your  average rating is {{rating}} </h4>
+                    {%endif %}
+                       
+                    <div class="rating">
+               
+                     {% for number in "12345" %}
+                    
+                     {% if number|add:"0" <= rating %}
+                         <i class="bi bi-star-fill " > </i>
+                     {% else %}
+                         <i class="bi bi-star"></i>
+                     {% endif %}
+                 {% endfor %}
+                 
+                    </div>
+            
+            
+                  </div>
+             </div>
+        </div>
+<!-- eidt form -->
+      <div class="form-box"> 
+        <div class="signup ">
+          <form id="signup-form" method='post' enctype="multipart/form-data">
+                      <div class="form-container">
+              {% csrf_token %} 
+              {{ form }}
+              </div>
+            <button class="btn btn-primary" type="submit" >Submit</button>
+          </form>
+          </div>
+        </div>
+    
+
+<!-- redeem -->
+
+    </main>
+
+
+{% comment %} redeem container {% endcomment %}
+<div class="redeem-container">
+  <div class="redeem">
+    <form method="post">
+          {% csrf_token %} 
+          <input type="number" id='time' name="time" value="{{user.time}}" min='0' max="{{user.time}}">
+          <input type="number" id ='currency' name="currency" value="" readonly >
+          <button class="btn btn-primary">redeem</button>
+         <div id='redeem-close-btn'> <i  class="bi bi-x-circle-fill"></i></div>
+    </form>
+  </div>
+</div>
+{% comment %} redeem container {% endcomment %}
+    
+    
+    <script src="{% static 'user.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,402 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>time bank</title>
+    <!--style sheet -->
+    	<!-- Font Awesome -->
+
+	<!-- CustomJs -->
+
+	
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!--icon cdn-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+         <a href="{% url 'home' %}"> <h2 >Time Bank </h2></a>
+        </div>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="search" id ='search' class='search' placeholder="search for constructers">
+        </div>
+        <div class="create">
+            <label class="btn btn-primary"  id='search-icon' for="create-post">search</label>
+            <label><i class="bi bi-cart-fill"></i><span>6</span></label>
+            <div class="profile-photo">
+                
+            {% if user.image %}
+                <a href="{% url 'user' %}"> <img src="{{user.image.url}}" > </a>
+            {% else %}
+            <a href="{% url 'user' %}"> <img src="https://media.istockphoto.com/id/950587720/vector/incognito-5.jpg?s=612x612&w=0&k=20&c=e66fJb2d-Mwp5vrR366dknZN-s7nJRjJhipcy5w9kOs=" alt=""> </a>
+            {% endif %}
+            </div>
+
+        
+        </div>
+    </div>
+    </nav>
+  
+   <main>
+    <div class="container">
+      
+            <div class="left ">
+                <a href="" class="profile">
+                    <div class="profile-photo">
+                    {% if user.image %}
+                   <img src="{{user.image.url}}" alt=""> 
+                    {% endif %}
+                    </div>
+                    <div class="handler">
+                        <h4>{{user}}</h4>
+                        <p class="text-muted">
+                            {{user.area}}
+                        </p>
+                    </div>
+                </a>
+    
+                <div class="sidebar">
+                    <a href="{% url 'home' %}" class="menu-item ">
+                        <span><i class="bi bi-house-fill"></i></span><h3>home</h3>
+                    </a>
+                    <a href="{%url 'cart' %}" class="menu-item" id="explore">
+                        <span><i class="bi bi-cart-fill"><small class="notification-count">{{ cart|length }}+</small></i></span><h3>cart</h3>
+                    </a>
+                 
+                  <a href="{% url 'application' %}" class="menu-item" id="notifications">
+                        
+                    <span><i class="bi bi-bell-fill"></i></span><h3>applications</h3>
+                  
+                </a>
+    
+                    <a href="#" class="menu-item" id="message-notifications">
+                        <span ><i class="bi bi-sort-up"> </i></span><h3>filter</h3>
+                    </a>
+    
+                    <a href="#" class="menu-item" id="filter">
+                        <span ><i class="bi bi-sort-up"> <small class="notification-count"></small></i></span><h3>filter</h3>
+                    </a>
+    
+    
+     
+                    <a href="#" class="menu-item" id="theme">
+                        <span><i class="bi bi-gear-fill"></i></span><h3>theme</h3>
+                    </a>
+           
+                </div>
+                <label id='timer' class="btn btn-primary"  for="create-post"><p id='hours'>0</p><p id='minutes'>0</p><p id='seconds'>0</p></label>
+            </div>
+    
+            <!--================================end of side bar and side bar====================================-->
+            <!--===========================================middle================================================-->
+            
+            <div class="middle">
+            
+
+
+
+        
+
+            <div class="stories">
+    
+
+                {%for i in data%}
+                 <div class="story" style="background-image: url('media/{{ i.img }}');">
+                    <div class="profile-photo">
+                        <a href="/product/{{i.id}}"><img src="media/{{i.img}}" alt=""></a>
+    
+                    </div>
+                    <p class="name">{{i.title}}</p>
+                </div>
+              
+                {%endfor %}
+
+
+                
+               
+            </div>
+
+    
+    
+    
+                <div class="creat-post">
+    
+                    <input type="text" name="" class='search' id="creat-post" placeholder="what's on your mind,tony?">
+                    <input type="submit" value="search" class="btn btn-primary">
+                </div> 
+    
+
+    {% comment %} slider {% endcomment %}
+    {% comment %} <div id="slider">
+        <a href="#" class="control_next">></a>
+        <a href="#" class="control_prev"><</a>
+        <ul>
+          <li>SLIDE 1</li>
+          <li style="background: #aaa;">SLIDE 2</li>
+          <li>SLIDE 3</li>
+          <li style="background: #aaa;">SLIDE 4</li>
+        </ul>  
+      </div>
+      
+      <div class="slider_option">
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox">Autoplay Slider</label>
+      </div>  {% endcomment %}
+    {% comment %} slider {% endcomment %}
+    
+    
+
+                    <div class="feeds" id='postfeeds'>
+
+                       {%for i in post %}
+                        <div class="feed">
+                            <div class="head">
+                                <div class="user">
+                                    <div class="profile-photo">
+                                        <img src="{{i.nation.img.url}}" alt=""> 
+                                     </div>
+                                     <div class="ingo">
+                                        <h3>{{i.name}}</h3>
+                                        <small>{{i.area}},{{i.created_at}}</small>
+                                     </div>
+                                     
+                                </div>
+                                <span class="edit">
+                                    <i class="bi bi-three-dots"></i>
+                                 </span>
+                            </div>
+    
+                        <div class="photo skeleton">
+                            <a href="/product/{{i.id}}">   <img src="media/{{i.img}}" alt=""> </a>
+                        </div>
+    
+                        <div class="action-buttons">
+    
+                            <div class="intraction-button">
+
+                                {% if i in booking.post.all %}
+
+                                <button value="{{i.id}}" style="background: hsl(252,15%,60%);"  class="applay-btn btn-primary">APPLAY</button>
+                                {%else%}
+                                <button value="{{i.id}}"  class="applay-btn btn-primary">APPLAY</button>
+                                {% endif %}
+                                
+
+                            </div>
+                            <div value = "{{i.id}}" class="bookmark">
+                                {% if i.id|add:0|stringformat:"d" in cart %}
+                                <span> <i class="bi bi-cart-fill" style="color: hsl(252,15%,60%);"></i> </span>
+                                {%else%}
+                                <span><i class="bi bi-cart-fill"></i> </span>
+                                {% endif %}
+                                
+
+                            </div>
+                        </div>
+    
+    
+                        <div class="cation">
+                           
+                            <p><b>constuction type</b> : alluminium-fabrication  </p>
+                        </div>
+    
+                        <div class="cation">
+                            <p><b>location : </b>  <span class="span hash-tag">#{{i.area}}</span></p>
+                        </div>
+                        <div class="text-muted"><P>description:</P>  {{i.detail}}...
+
+                        </div>
+    
+                       
+                        </div>
+                    {%endfor %}
+
+                        
+                        
+                    </div>
+
+        </div>
+
+    
+            <div class="right">
+                <!--=====messages=====-->
+                <div class="messages" id="msg">
+                    <div class="heading">
+                        <h4>filter</h4>
+                        <i class="bi bi-three-dots"></i>
+                    </div>
+                    <!--=====search  bar=====-->
+                    <div class="search-bar">
+                        <i class="bi bi-search"></i>
+                        <input type="search" placeholder="search...." id="message-search">
+                    </div>
+                    <!--=====search  bar=====-->
+                    <div class="category">
+                        <h6 class="active" id="nation">nation</h6>
+                        <h6 id='state'>state</h6>
+                        <h6 id = 'district' class="message-requests">district</h6>
+                      
+                    </div>
+                    <!--=====message=====-->
+                    <div id='filter-container'>
+
+
+                        {% for i in filter %}
+                        <div id='{{i.id}}' class="message" category='nation' >
+                            <div class="profile-photo .skeleton">
+                                <img src="media/{{i.img}}" alt="">
+                            </div>
+                            <div class="message-body">
+                                <h5>{{i.title}}</h5>
+                                <p class="text-muted">broh oru 5k poreh</p>
+                            </div>
+                        </div>
+                        {%endfor %}
+
+                    <!--=====/message====-->
+    
+                   
+                   
+                  </div>
+                  <!--=====end of messages=====-->
+               
+
+                 {% comment %} <div class="friend-requests">
+                    <h4>requests</h4>
+                    
+                    <div class="request">
+                        <div class="info">
+                            <div class="info">
+                                <div class="profile-photo">
+                                    <img src="feeds/super pic.jpg" alt="">
+                                </div>
+                                <div class="div">
+                                    <h5>appoxi limited</h5>
+                                    <p class="text-muted">
+                                        8 mutal friends
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn btn-primary">accept</button>
+                            <button class="btn ">decline</button>
+                        </div>
+                    </div>
+                
+    
+                    <div class="request">
+                        <div class="info">
+                            <div class="info">
+                                <div class="profile-photo">
+                                    <img src="feeds/super pic.jpg" alt="">
+                                </div>
+                                <div class="div">
+                                    <h5>tini workers</h5>
+                                    <p class="text-muted">
+                                        6 mutal friends
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn btn-primary">accept</button>
+                            <button class="btn ">decline</button>
+                        </div>
+                    </div>
+         
+                    <div class="request">
+                        <div class="info">
+                            <div class="info">
+                                <div class="profile-photo">
+                                    <img src="feeds/super pic.jpg" alt="">
+                                </div>
+                                <div class="div">
+                                    <h5>glass@it</h5>
+                                    <p class="text-muted">
+                                        1 mutal friends
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn btn-primary">accept</button>
+                            <button class="btn ">decline</button>
+                        </div>
+                    </div>
+                    
+                 </div>  {% endcomment %}
+                  <!--=====/request=====-->
+            </div>
+    
+        </div>
+    </main>
+    <div class="custumise-theme">
+        <div class="card">
+            <h2>custumise your view</h2>
+            <p class="text-muted">manage your font size and color view and baground </p>
+            <!--=====font size=====-->
+         <div class="font-size">
+                <h6>Aa</h6>
+            <div class="choose-size">
+                <span class="font-size-1 active"></span>
+                <span class="font-size-2"></span>
+                <span class="font-size-3"></span>
+                <span class="font-size-4"></span>
+                <span class="font-size-5"></span>
+            </div>
+            <h3>Aa</h3>
+        </div>
+            <!--=====/font size =====-->
+    
+            <!--=====color=====-->
+            <div class="color">
+                <h4>color</h4>
+                <div class="choose-color">
+                   <span class="color-1 "></span> 
+                   <span class="color-2"></span> 
+                   <span class="color-3"></span> 
+                   <span class="color-4 active"></span> 
+                   <span class="color-5"></span> 
+                  
+                </div>
+    
+            </div>
+            <!--=====/col0r =====-->
+            <!--=====choose bg =====-->
+            <div class="background">
+                <h4>back ground</h4>
+                <div class="choose-bg">
+                    <div class="bg-1">
+                        <span></span>
+                        <h5 for="bg-1">Light</h5>
+                    </div>
+                    <div class="bg-2 active">
+                        <span></span>
+                        <h5 >Dim</h5>
+                    </div>
+                    <div class="bg-3">
+                        <span></span>
+                        <h5 for="bg-3">Lights out</h5>
+                    </div>
+                </div>
+            </div>
+            <!--=====/choose bg =====-->
+        </div>
+    </div>
+
+    <div class='loading'><h4><img src ='media/loading.svg' /></h4><div>
+
+    <script src="{% static 'script.js' %}"></script>
+    </body>
+</html>

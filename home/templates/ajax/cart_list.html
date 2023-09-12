@@ -1,0 +1,26 @@
+
+
+{%for i in data %}
+  
+
+<div class="creat-post">
+    <div class="cart-image">
+        <img src="media/{{i.img}}" alt="">
+    </div>
+      
+    <div class="cart-content">
+        <p>  {{i.name}}</p>
+        <p>  {{i.district}}</p>
+
+    </div>
+   
+    <div class="cart-buttons">
+        <input type="submit" value="apply" class="cart-btn">
+    </div>
+    <span value="{{i.id}}" class="delete-icon">
+        <i class="bi bi-x-circle-fill"></i>
+    </span>
+</div> 
+
+
+{%endfor %}
