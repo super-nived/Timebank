@@ -121,14 +121,16 @@ USE_TZ = True
 # for local running
 
 # STATIC_URL = 'static/'
-# # Directory on the filesystem to collect static files.
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# MEDIA_URL='/media/'
-# MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
 
 
 # for production 
 STATIC_URL = '/static/'
+
+# Directory on the filesystem to collect static files.
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
